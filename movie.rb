@@ -1,3 +1,5 @@
+require 'date'
+
 #Movie должно быть хранилищем данных об отдельном фильме, облегчающим к нему доступ
 class Movie
   # использую константу названий
@@ -12,10 +14,10 @@ class Movie
   end
   
   def month
-    require 'date'
   	#return begin "In month " + Date.strptime(@date, '%Y-%m').mon.to_s rescue 'no month' end
     if @date.size >= 7
-      return Date.strptime(@date, '%Y-%m').mon.to_s
+      # красивые названия месяцев! 
+      return Date::MONTHNAMES[Date.strptime(@date, '%Y-%m').mon]
     else
       return 'no month'
     end
