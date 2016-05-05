@@ -1,4 +1,5 @@
 require_relative 'movie.rb'
+require 'date'
 
 #Переписать задание 4, сделав два класса: Movie и MoviesList
 class MoviesList
@@ -33,6 +34,6 @@ class MoviesList
   
   def month_in_movies
     # обработаем месяц, в котором выпущен фильм, в строку
-    @movies.group_by(&:month).map { |k,v| [k, v.size] }
+    @movies.group_by(&:month).map { |k,v| [k, v.size] }.sort.map{|k,v|[Date::MONTHNAMES[k],v]}
   end
 end

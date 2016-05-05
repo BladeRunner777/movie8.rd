@@ -17,11 +17,12 @@ class Movie
   	#return begin "In month " + Date.strptime(@date, '%Y-%m').mon.to_s rescue 'no month' end
     if @date.size >= 7
       # красивые названия месяцев! 
-      return Date::MONTHNAMES[Date.strptime(@date, '%Y-%m').mon]
+      @number = Date.strptime(@date, '%Y-%m').mon
     else
-      return 'no month'
+      @number = 0
     end
   end
+
   # есть ли у этого фильма жанр...?
   def has_genre?(name)
     @genre.include?(name)
