@@ -28,10 +28,14 @@ class MyMoviesList < MoviesList
   # выдавать рекомендацию: 5 случайных фильмов, которые пользователь ещё не смотрел; фильмы с более высоким рейтингом должны выдаваться с большей вероятностью (но должна быть вероятность получить любой фильм);
   def random_old(count=5)
     #p @movies.select{|elem|elem.rating2!=nil}.map(&:name)
-    @movies.select{|elem|elem.rating2!=nil}.sort_by{rand}.first(count)
+    @movies.select{|elem|elem.rating2!=nil}.sort_by{|i|i.rating2.to_i * rand}.first(count)
   end 
   #выдавать рекомендацию: 5 случайных фильмов, которые пользователь уже видел и они ему понравились (вероятность получить такой фильм тем больше, чем выше пользователь оценил и чем давнее его видел);
   def random_new(count=5)
-    @movies.reject{|elem|elem.rating2}.sort_by{rand}.first(count)
+    @movies.reject{|elem|elem.rating2}.sort_by{|i|i.rating2.to_i * rand}.first(count)
   end 
+  # режиссёр такой-то (ещё 10 его фильмов в спике)
+  def directors_creatives(director, count=10)
+    @movies.select{|elem|elem.director==@director}.sort_by(&:date).first(10).map(&:name)
+  end
 end

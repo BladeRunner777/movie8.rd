@@ -11,13 +11,13 @@ class MyMovie < Movie
   end
 
   #Все фильмы в MyMovieList должны быть четырёх классов, унаследованных от Movie: AncientMovie (фильм 1900-1945), ClassicMovie (1945-1968), ModernMovie (1968-2000) и NewMovie (2000 по сегодняшний день)
-  def what_type?
+  def create #(what)
     year = @year.to_i
     if year < 1945
       AncientMovie.new(line)
     elsif year < 1968
       ClassicMovie.new(line)
-    elsif
+    elsif year < 2000
       ModernMovie.new(line)
     else
       NewMovie.new(line)
@@ -26,25 +26,26 @@ class MyMovie < Movie
 end
 
 class AncientMovie < MyMovie
-  def recomendation
+  def recommendation
     @name + " — old movie " + @year.to_s
   end
 end
 
 class ClassicMovie  < MyMovie
-  def recomendation
-    @name + " — classic movie. Director — " + @director + " Movies of director: " + @movies.select{|elem|elem.director==movie.director}.sort_by(&:date).first(10).map(&:name)
+  def recommendation
+    #list = MyMoviesList.new(name_of_file)
+    @name + " — classic movie. Director — " + @director #+ " Movies of director: " + list.directors_creatives(@director, 10)
   end
 end
 
 class ModernMovie < MyMovie
-  def recomendation
-    @name + " — old movie " + @year.to_s
+  def recommendation
+    @name + " — modern movie. Stars: " + @stars.to_s
   end
 end
 
 class NewMovie < MyMovie
-  def recomendation
-    @name + " — old movie " + @year.to_s
+  def recommendation
+    @name + " — new movie. IMDb rating:" + @rating
   end
 end

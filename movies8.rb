@@ -57,9 +57,9 @@ m.looked
 #Рекомендация 5 новых!
 puts
 puts "The five NEW random movies are..."
-m.random_new(5).each {|movie| p movie.what_type?; p movie.what_type?.recomendation}
+m.random_new(5).each {|movie| puts movie.create.recommendation}
 
 #Рекомендация 5 старых
 puts
 puts "The five OLD random movies, you seen ..."
-m.random_old(5).each {|movie|puts "Personal rating " + movie.what_type?.recomendation}
+m.random_old(5).each {|movie|puts "Personal rating " + movie.create.recommendation}
