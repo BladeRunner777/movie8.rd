@@ -1,4 +1,5 @@
 require_relative 'movie_list.rb'
+require_relative 'my_movie_list.rb'
 
 # Запрашиваю имя файла с клавиатуры пользователем
 puts "Input the name of file:"
@@ -12,7 +13,7 @@ end
 
 require 'ostruct'
 
-m = MoviesList.new(name_of_file)
+m = MyMoviesList.new(name_of_file)
 
 # 5 самых длинных фильмов
 puts
@@ -47,3 +48,18 @@ p m.actor_in_movies
 puts
 puts "Month statistics:"
 p m.month_in_movies
+
+#Ввожу те которые уже посмотрел!
+puts
+puts "Let`s make your own rating!"
+m.looked
+
+#Рекомендация 5 новых!
+puts
+puts "The five NEW random movies are..."
+m.random_new(5).each {|movie| p movie.what_type?; p movie.what_type?.recomendation}
+
+#Рекомендация 5 старых
+puts
+puts "The five OLD random movies, you seen ..."
+m.random_old(5).each {|movie|puts "Personal rating " + movie.what_type?.recomendation}

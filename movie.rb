@@ -17,9 +17,9 @@ class Movie
   	#return begin "In month " + Date.strptime(@date, '%Y-%m').mon.to_s rescue 'no month' end
     if @date.size >= 7
       # красивые названия месяцев! 
-      return Date.strptime(@date, '%Y-%m').mon
+      Date.strptime(@date, '%Y-%m').mon
     else
-      return 0
+      0
     end
   end
 

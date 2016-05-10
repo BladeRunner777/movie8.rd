@@ -1,11 +1,11 @@
-require_relative 'movie.rb'
+require_relative 'my_movie.rb'
 require 'date'
 
 #Переписать задание 4, сделав два класса: Movie и MoviesList
 class MoviesList
   #MovieList должен уметь - разобрать данные из файла и превратить их в набор объектов Movie;
   def initialize(name_of_file)
-  	@movies = File.readlines(name_of_file).map {|line|Movie.new(line)}
+  	@movies = File.readlines(name_of_file).map {|line|MyMovie.new(line)}
   end
 
   def longest(count = 5)
