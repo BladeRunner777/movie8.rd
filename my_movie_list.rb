@@ -1,6 +1,12 @@
 require_relative 'movie_list'
 
 class MyMoviesList < MoviesList
+  
+  #4 разных классов! 
+  def initialize(name_of_file)
+    @movies = File.readlines(name_of_file).map {|line|create(line)}
+  end
+  
   # сохранять для каждого фильма «я это уже посмотрел», оценка в баллах;
   def looked
     a=true
@@ -37,5 +43,19 @@ class MyMoviesList < MoviesList
   # режиссёр такой-то (ещё 10 его фильмов в спике)
   def directors_creatives(director, count=10)
     @movies.select{|elem|elem.director==@director}.sort_by(&:date).first(10).map(&:name)
+  end
+
+  #Все фильмы в MyMovieList должны быть четырёх классов, унаследованных от Movie: AncientMovie (фильм 1900-1945), ClassicMovie (1945-1968), ModernMovie (1968-2000) и NewMovie (2000 по сегодняшний день)
+  def create(line)
+    year = Movie.new(line).year.to_i
+    if year < 1945
+      AncientMovie.new(line)
+    elsif year < 1968
+      ClassicMovie.new(line)
+    elsif year < 2000
+      ModernMovie.new(line)
+    else
+      NewMovie.new(line)
+    end
   end
 end

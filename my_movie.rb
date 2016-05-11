@@ -9,20 +9,7 @@ class MyMovie < Movie
   def name_year
     @name + " (" + @year + ")"
   end
-
-  #Все фильмы в MyMovieList должны быть четырёх классов, унаследованных от Movie: AncientMovie (фильм 1900-1945), ClassicMovie (1945-1968), ModernMovie (1968-2000) и NewMovie (2000 по сегодняшний день)
-  def create #(what)
-    year = @year.to_i
-    if year < 1945
-      AncientMovie.new(line)
-    elsif year < 1968
-      ClassicMovie.new(line)
-    elsif year < 2000
-      ModernMovie.new(line)
-    else
-      NewMovie.new(line)
-    end
-  end    
+    
 end
 
 class AncientMovie < MyMovie
