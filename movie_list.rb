@@ -5,7 +5,7 @@ require 'date'
 class MoviesList
   #MovieList должен уметь - разобрать данные из файла и превратить их в набор объектов Movie;
   def initialize(name_of_file)
-  	@movies = File.readlines(name_of_file).map {|line|MyMovie.new(line)}
+  	@movies = File.readlines(name_of_file).map {|line|Movie.new(line)}
   end
 
   def longest(count = 5)
