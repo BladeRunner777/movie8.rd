@@ -7,9 +7,6 @@ class MyMovie < Movie
     @rating2 = count
   end
 
-  def name_year
-    @name + " (" + @year + ")"
-  end
   #Все фильмы в MyMovieList должны быть четырёх классов, унаследованных от Movie: AncientMovie (фильм 1900-1945), ClassicMovie (1945-1968), ModernMovie (1968-2000) и NewMovie (2000 по сегодняшний день)
   def self.create(line)
     year = line.split('|')[2].to_i

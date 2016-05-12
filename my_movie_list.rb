@@ -8,49 +8,19 @@ class MyMoviesList < MoviesList
   end
   
   # сохранять для каждого фильма «я это уже посмотрел», оценка в баллах;
-  def looked
-    a=true
-    while a==TRUE
-      puts 'Enter the number of movie You looked, from 1 to ' + @movies.size.to_s + ': (0 - exit)'
-      number_of_movie = gets.to_i
-      if number_of_movie==0
-        puts 'See you later!'
-        a=false
-      elsif number_of_movie>=@movies.size
-        puts 'This is too big number! By!'
-        a=false 
-      else
-        puts '=>' + @movies[number_of_movie].name_year + ' Whay is your personal rating?  From 1 to 10: '
-        personal_rating = gets.to_i
-        if (1..10).to_a.include?(personal_rating)
-          @movies[number_of_movie-1].my_rating(personal_rating)
-        else
-          p "Wrong rating!"
-        end
-        puts
-      end
-    end
+  def looked(number_of_movie, personal_rating)
+    @movies[number_of_movie-1].my_rating(personal_rating)
   end
 
   def level
-    puts
-    puts "Enter level of Ancient Movie (1..4)"
-    weight = gets.to_i
-    @movies.select{|elem|elem.class.to_s=='AncientMovie'}.each{|i|i.my_weight(weight)}
-    puts
-    puts "Enter level of Classic Movie (1..4)"
-    weight = gets.to_i
-    @movies.select{|elem|elem.class.to_s=='ClassicMovie'}.each{|i|i.my_weight(weight)}
-    puts
-    puts "Enter level of Modern Movie (1..4)"
-    weight = gets.to_i
-    @movies.select{|elem|elem.class.to_s=='ModernMovie'}.each{|i|i.my_weight(weight)}
-    puts
-    puts "Enter level of New Movie (1..4)"
-    weight = gets.to_i
-    @movies.select{|elem|elem.class.to_s=='NewMovie'}.each{|i|i.my_weight(weight)}
-
-    @movies.map(&:weight)
+    weight = 1
+    @movies.grep(AncientMovie).each{|i|i.my_weight(weight)}
+    weight = 2
+    @movies.grep(ClassicMovie).each{|i|i.my_weight(weight)}
+    weight = 3
+    @movies.grep(ModernMovie).each{|i|i.my_weight(weight)}
+    weight = 4
+    @movies.grep(NewMovie).each{|i|i.my_weight(weight)}
   end
 
   # выдавать рекомендацию: 5 случайных фильмов, которые пользователь ещё не смотрел; фильмы с более высоким рейтингом должны выдаваться с большей вероятностью (но должна быть вероятность получить любой фильм);
@@ -66,5 +36,9 @@ class MyMoviesList < MoviesList
   # режиссёр такой-то (ещё 10 его фильмов в спике)
   def directors_creatives(director, count=10)
     @movies.select{|elem|elem.director==@director}.sort_by(&:date).first(10).map(&:name)
+  end
+
+  def name_year(number)
+    @movies[number].name + " (" + @movies[number].year + ")"
   end
 end

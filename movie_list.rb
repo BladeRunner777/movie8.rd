@@ -36,4 +36,8 @@ class MoviesList
     # обработаем месяц, в котором выпущен фильм, в строку
     @movies.group_by(&:month).map { |k,v| [k, v.size] }.sort.map{|k,v|[Date::MONTHNAMES[k],v]}
   end
+
+  def size
+    @movies.size
+  end
 end

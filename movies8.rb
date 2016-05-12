@@ -1,3 +1,4 @@
+require_relative 'looked.rb'
 require_relative 'movie_list.rb'
 require_relative 'my_movie_list.rb'
 
@@ -52,7 +53,8 @@ p m.month_in_movies
 #Ввожу те которые уже посмотрел!
 puts
 puts "Let`s make your own rating!"
-m.looked
+m.level
+Looked.into(m)
 
 #Рекомендация 5 новых!
 puts
