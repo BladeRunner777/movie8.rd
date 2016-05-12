@@ -51,18 +51,4 @@ puts "Month statistics:"
 p m.month_in_movies
 
 #Ввожу те которые уже посмотрел!
-puts
-puts "Let`s make your own rating!"
-m.level
 Looked.into(m)
-
-#Рекомендация 5 новых!
-puts
-puts "The five NEW random movies are..."
-#m.random_new(5).each {|movie| puts movie.class}
-m.random_new(5).each {|movie| puts movie.recommendation}
-
-#Рекомендация 5 старых
-puts
-puts "The five OLD random movies, you seen ..."
-m.random_old(5).each {|movie|puts "Personal rating " + movie.recommendation}

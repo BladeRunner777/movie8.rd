@@ -21,32 +21,32 @@ class MyMovie < Movie
     end
   end
   
-  def my_weight(count)
-    @weight=count
-  end
 end
 
 class AncientMovie < MyMovie
   def recommendation
+    @weight = 1
     @name + " — old movie " + @year.to_s
   end
 end
 
 class ClassicMovie  < MyMovie
   def recommendation
-    #list = MyMoviesList.new(name_of_file)
+    @weight = 2
     @name + " — classic movie. Director — " + @director #+ " Movies of director: " + list.directors_creatives(@director, 10)
   end
 end
 
 class ModernMovie < MyMovie
   def recommendation
+    @weight = 3
     @name + " — modern movie. Stars: " + @stars.to_s
   end
 end
 
 class NewMovie < MyMovie
   def recommendation
+    @weight = 4
     @name + " — new movie. IMDb rating:" + @rating
   end
 end
