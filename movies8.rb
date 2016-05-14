@@ -50,5 +50,10 @@ puts
 puts "Month statistics:"
 p m.month_in_movies
 
-#Ввожу те которые уже посмотрел!
+# Есть модуль (или модули), которые занимаются тем, чтобы у фильма был рейтинг и его можно было установить; этот модуль можно подключить к другой ситуации — например, у нас есть список книг, все поля у книг другие и поведение тоже, но мы подключаем к нему модуль рейтингования — и ура, книжкам точно так же можно ставить оценки!
 Looked.into(m)
+
+m.random_new(5).each {|movie| puts movie.recommendation}
+puts
+puts "The five OLD random movies, you seen ..."
+m.random_old(5).each {|movie| puts "Personal rating " + movie.recommendation}

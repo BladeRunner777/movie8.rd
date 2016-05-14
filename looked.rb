@@ -11,11 +11,6 @@ module Looked
     list.rate('The Godfather: Part II', 10) 
     puts
     puts "The five NEW random movies are..."
-    list.random_new(5).each {|movie| puts movie.recommendation}
-    puts
-    puts "The five OLD random movies, you seen ..."
-    list.random_old(5).each {|movie| puts "Personal rating " + movie.recommendation}
-
   end
 end
 

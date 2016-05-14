@@ -24,29 +24,45 @@ class MyMovie < Movie
 end
 
 class AncientMovie < MyMovie
+  Weight = 1
+  def class_weight
+    Weight
+  end
+
   def recommendation
-    @weight = 1
     @name + " — old movie " + @year.to_s
   end
 end
 
 class ClassicMovie  < MyMovie
+  Weight = 2
+  def class_weight
+    Weight
+  end
+
   def recommendation
-    @weight = 2
     @name + " — classic movie. Director — " + @director #+ " Movies of director: " + list.directors_creatives(@director, 10)
   end
 end
 
 class ModernMovie < MyMovie
+  Weight = 3
+  def class_weight
+    Weight
+  end
+
   def recommendation
-    @weight = 3
     @name + " — modern movie. Stars: " + @stars.to_s
   end
 end
 
 class NewMovie < MyMovie
+  Weight = 4
+  def class_weight
+    Weight
+  end
+
   def recommendation
-    @weight = 4
     @name + " — new movie. IMDb rating:" + @rating
   end
 end
