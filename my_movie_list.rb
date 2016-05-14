@@ -24,12 +24,17 @@ class MyMoviesList < MoviesList
   end 
   #выдавать рекомендацию: 5 случайных фильмов, которые пользователь уже видел и они ему понравились (вероятность получить такой фильм тем больше, чем выше пользователь оценил и чем давнее его видел);
   def random_new(count=5)
+     #+ " Movies of director: " + m2.directors_creatives(@director)
     #p у разных классов фильмов должен быть разный «вес», в зависимости от твоих предпочтений, и при выдаче рекомендации на вечер MyMoviesList должен учитывать И IMDB-рейтинг фильма, и этот в
     @movies.reject{|elem|elem.rating2}.sort_by{|i|i.rating2.to_i * i.rating.to_i * i.class_weight.to_i * rand}.first(count)
   end 
   # режиссёр такой-то (ещё 10 его фильмов в спике)
-  def directors_creatives(director, count=10)
-    @movies.select{|elem|elem.director==@director}.sort_by(&:date).first(count).map(&:name)
+  def directors_creatives(director, for_movie, count=10)
+    if for_movie.is_a?(ClassicMovie)
+      @movies.select{|elem|elem.director==director && elem!=for_movie}.first(count).map(&:name).to_s
+    else
+      ''
+    end
   end
 
   def name_year(number)
